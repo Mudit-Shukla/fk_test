@@ -1,0 +1,12 @@
+CREATE TABLE `alert_summary_table` (
+  `AlertSummaryId` int NOT NULL AUTO_INCREMENT,
+  `CreatedBy` int DEFAULT NULL,
+  `AlertTrxnUuId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Status` int NOT NULL,
+  `Data` blob,
+  `FileName` varchar(45) DEFAULT 'alert_summary',
+  `CreatedTimeStamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`AlertSummaryId`),
+  UNIQUE KEY `Id_UNIQUE` (`AlertSummaryId`),
+  UNIQUE KEY `AlertTrxnUuId_UNIQUE` (`AlertTrxnUuId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
