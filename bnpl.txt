@@ -16,3 +16,8 @@ for column in df.columns:
     
     # Show the plot
     plt.show()
+
+
+scaler = MinMaxScaler()
+scaled_data = scaler.fit_transform(df)
+scaled_df = pd.DataFrame(scaled_data, columns=df.columns)
