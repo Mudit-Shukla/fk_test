@@ -2,20 +2,21 @@
 for column in df.columns:
     plt.figure(figsize=(10, 5))
     
-    # Plot Original Values
+    # Plot Original Values as a Curve
     plt.plot(df[column], label=f'Original {column}', marker='o')
     
-    # Plot Scaled Values
-    plt.plot(scaled_df[column], label=f'Scaled {column}', marker='o')
+    # Plot Square Root Transformed Values as a Curve
+    plt.plot(sqrt_df[column], label=f'Square Root {column}', marker='o')
     
     # Adding titles and labels
-    plt.title(f'Original vs Scaled Values for {column}')
+    plt.title(f'Original vs Square Root Transformed Values for {column}')
     plt.xlabel('Index')
     plt.ylabel('Value')
     plt.legend()
     
     # Show the plot
     plt.show()
+
 
 
 scaler = MinMaxScaler()
