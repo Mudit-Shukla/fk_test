@@ -177,3 +177,18 @@ join address as ad on ad.TransactionId = transaction.TransactionId group by acco
 
 
 
+
+
+
+
+
+
+SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS international_trxn_count_last_3ms,
+SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) AND NOW() THEN 1 END) AS international_trxn_count_last_6ms,
+SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS international_trxn_count_last_month,
+SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS international_trxn_sum_last_3ms,
+SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) AND NOW() THEN Amount END) AS international_trxn_sum_last_6ms,
+SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS international_trxn_sum_last_month
+
+
+
