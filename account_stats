@@ -199,7 +199,7 @@ SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NO
 
 
 
-INSERT INTO account_stats (
+INSERT INTO account_stats_backup (
 accountid,
 accountAgeInDays,
 distinct_pincode,
@@ -251,6 +251,30 @@ success_trxn_amount_last_3ms,
 failed_trxn_amount_last_3ms,
 pending_trxn_amount_last_3ms,
 initiated_trxn_amount_last_3ms,
+delivered_trxn_count,
+returned_trxn_count,
+rejected_trxn_count,
+cancelled_trxn_count,
+delivered_trxn_count_1m,
+returned_trxn_count_1m,
+rejected_trxn_count_1m,
+cancelled_trxn_count_1m,
+delivered_trxn_count_3m,
+returned_trxn_count_3m,
+rejected_trxn_count_3m,
+cancelled_trxn_count_3m,
+delivered_trxn_amount,
+returned_trxn_amount,
+rejected_trxn_amount,
+cancelled_trxn_amount,
+delivered_trxn_amount_1m,
+returned_trxn_amount_1m,
+rejected_trxn_amount_1m,
+cancelled_trxn_amount_1m,
+delivered_trxn_amount_3m,
+returned_trxn_amount_3m,
+rejected_trxn_amount_3m,
+cancelled_trxn_amount_3m,
 credit_card_trxn_count,
 debit_card_trxn_count,
 upi_trxn_count,
@@ -339,6 +363,33 @@ SUM(CASE WHEN TransactionStatus = 0 AND TransactionDate BETWEEN DATE_SUB(NOW(), 
 SUM(CASE WHEN TransactionStatus = 1 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS failed_trxn_amount_last_3ms,
 SUM(CASE WHEN TransactionStatus = 2 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS pending_trxn_amount_last_3ms,
 SUM(CASE WHEN TransactionStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS initiated_trxn_amount_last_3ms,
+
+COUNT(CASE WHEN OrderStatus = 4 or OrderStatus = 7 THEN 1 END) AS delivered_trxn_count,
+COUNT(CASE WHEN OrderStatus = 5 or OrderStatus = 6 THEN 1 END) AS returned_trxn_count,
+COUNT(CASE WHEN OrderStatus = 9 THEN 1 END) AS rejected_trxn_count,
+COUNT(CASE WHEN OrderStatus = 3 THEN 1 END) AS cancelled_trxn_count,
+COUNT(CASE WHEN (OrderStatus = 4 or OrderStatus = 7) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS delivered_trxn_count_1m,
+COUNT(CASE WHEN (OrderStatus = 5 or OrderStatus = 6) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS returned_trxn_count_1m,
+COUNT(CASE WHEN OrderStatus = 9 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS rejected_trxn_count_1m,
+COUNT(CASE WHEN OrderStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS cancelled_trxn_count_1m,
+COUNT(CASE WHEN (OrderStatus = 4 or OrderStatus = 7) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS delivered_trxn_count_last_3ms,
+COUNT(CASE WHEN (OrderStatus = 5 or OrderStatus = 6) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS returned_trxn_count_last_3ms,
+COUNT(CASE WHEN OrderStatus = 9 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS rejected_trxn_count_last_3ms,
+COUNT(CASE WHEN OrderStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS cancelled_trxn_count_last_3ms,
+
+SUM(CASE WHEN OrderStatus = 4 or OrderStatus = 7 THEN Amount END) AS delivered_trxn_amount,
+SUM(CASE WHEN OrderStatus = 5 or OrderStatus = 6 THEN Amount END) AS returned_trxn_amount,
+SUM(CASE WHEN OrderStatus = 9 THEN Amount END) AS rejected_trxn_amount,
+SUM(CASE WHEN OrderStatus = 3 THEN Amount END) AS cancelled_trxn_amount,
+SUM(CASE WHEN (OrderStatus = 4 or OrderStatus = 7) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS delivered_trxn_amount_1m,
+SUM(CASE WHEN (OrderStatus = 5 or OrderStatus = 6) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS returned_trxn_amount_1m,
+SUM(CASE WHEN OrderStatus = 9 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS rejected_trxn_amount_1m,
+SUM(CASE WHEN OrderStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS cancelled_trxn_amount_1m,
+SUM(CASE WHEN (OrderStatus = 4 or OrderStatus = 7) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS delivered_trxn_amount_last_3ms,
+SUM(CASE WHEN (OrderStatus = 5 or OrderStatus = 6) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN AMount END) AS returned_trxn_amount_last_3ms,
+SUM(CASE WHEN OrderStatus = 9 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS rejected_trxn_amount_last_3ms,
+SUM(CASE WHEN OrderStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS cancelled_trxn_amount_last_3ms,
+
 COUNT(CASE WHEN TransactionModeId = 'CREDIT' THEN 1 END) AS credit_card_trxn_count,
 COUNT(CASE WHEN TransactionModeId = 'DEBIT' THEN 1 END) AS debit_card_trxn_count,
 COUNT(CASE WHEN TransactionModeId = 'PHONEPE' OR TransactionModeId = 'UPI_INTENT' OR TransactionModeId = 'UPI_COLLECT' OR TransactionModeId = 'FK_UPI' THEN 1 END) AS upi_trxn_count,
@@ -380,8 +431,11 @@ FROM transaction
 JOIN account AS acc ON transaction.AccountId = acc.AccountId
 left JOIN card ON transaction.CardId = card.CardId
 JOIN address AS ad ON ad.TransactionId = transaction.TransactionId
-WHERE transaction.ACCOUNTID IN (parameter)
+WHERE transaction.ACCOUNTID IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
 GROUP BY accountid ;
+
+select * from order_status_lookup;
+select AccountId from account limit 20;
 
 
 
