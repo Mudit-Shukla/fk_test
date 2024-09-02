@@ -1,1 +1,8 @@
 df['base_score2']=(1-df3['WOE1'])*100*0.05 + (1-df3['WOE2'])*100*0.05 + df['payment_modes_lt_cod_count_ratio']*10 + df3['riskypincode']*0.25+demo['riskypayment']*0.4+df3['riskydevice']*0.10 + df['log_bnpl']*5
+
+
+df['log_bnpl']=np.where(
+    df['bnpl_total_amount_overdue_12m'] == 0,
+    1,
+    np.log(df['bnpl_total_amount_overdue_lt'])
+)
