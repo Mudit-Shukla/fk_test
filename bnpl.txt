@@ -8,3 +8,7 @@ df['log_bnpl']=np.where(
 45- 73551 ,63030
 41-83123 ,67898
 50 -46487,46610
+
+
+df[df['base_score2']>45].shape[0]
+df[(df['base_score2']>45)&(df['bnpl_total_amount_overdue_12m']>500)].shape[0]
