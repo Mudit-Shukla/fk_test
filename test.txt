@@ -18,16 +18,43 @@ CREATE TABLE `alert_summary_table` (
 
 
 
-account_id','browse_session_12m_checkout_complete_count',
-       'order_level_window_24m_order_count','order_window_12m__order_count',
-       'order_window_12m_delivered_count','order_window_12m__order_value',
-       'order_window_24m_small_sale_created_item_count','order_window_24m_small_sale_placed_item_count',
-       'order_window_24m_total_placed_item_count','order_window_24m_total_created_item_count',
-       'order_window_12m_small_sale_created_item_count','order_window_12m_small_sale_placed_item_count',
-       'order_time_24m_night_units_created_count','order_time_24m_weekday_units_created_count',
-       'order_time_24m_month_mid_units_created_count','order_time_24m_night_units_placed_count',
-       'order_time_24m_weekday_units_placed_count','order_time_24m_month_mid_units_placed_count',
-        'order_level_window_12m_small_sale_total_gmv_order_level_window_12m_total_gmv_ratio',
-        'order_window_12m_small_sale_placed_item_count_order_window_12m_total_placed_item_count_ratio',
-        'order_level_window_24m_small_sale_total_gmv_order_level_window_24m_total_gmv_ratio',
-        'order_level_window_24m_all_sale_total_gmv_order_level_window_24m_total_gmv_ratio
+WITH RECURSIVE connected_trxns AS (
+    -- Base case: Start with trxn 1
+    SELECT 1 AS trxn
+    
+    UNION
+    
+    -- Recursive case: Find connected trxns
+    SELECT
+        CASE
+            WHEN cc.trxn = c1.AccountId THEN c2.AccountId
+            WHEN cc.trxn = c2.AccountId THEN c1.AccountId
+        END AS trxn
+    FROM connected_trxns cc
+    JOIN (
+        -- Connections through cardId
+        SELECT c1.AccountId, c2.AccountId
+        FROM transaction c1
+        left JOIN transaction c2 ON c1.cardId = c2.cardId AND c1.AccountId < c2.AccountId
+        
+        UNION
+        
+        -- Connections through DEVICEID
+        SELECT c1.AccountId, c2.AccountId
+        FROM transaction c1
+        left JOIN transaction c2 ON c1.DEVICEID = c2.DEVICEID AND c1.AccountId < c2.AccountId
+    ) AS connections(c1, c2)
+    ON cc.trxn IN (c1, c2)
+    WHERE 
+        CASE
+            WHEN cc.trxn = c1 THEN c2
+            WHEN cc.trxn = c2 THEN c1
+        END IS NOT NULL
+)
+SELECT ARRAY_AGG(trxn ) AS connected
+FROM connected_trxns;
+
+
+
+
+
