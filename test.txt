@@ -10,3 +10,24 @@ CREATE TABLE `alert_summary_table` (
   UNIQUE KEY `Id_UNIQUE` (`AlertSummaryId`),
   UNIQUE KEY `AlertTrxnUuId_UNIQUE` (`AlertTrxnUuId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+
+
+
+
+account_id','browse_session_12m_checkout_complete_count',
+       'order_level_window_24m_order_count','order_window_12m__order_count',
+       'order_window_12m_delivered_count','order_window_12m__order_value',
+       'order_window_24m_small_sale_created_item_count','order_window_24m_small_sale_placed_item_count',
+       'order_window_24m_total_placed_item_count','order_window_24m_total_created_item_count',
+       'order_window_12m_small_sale_created_item_count','order_window_12m_small_sale_placed_item_count',
+       'order_time_24m_night_units_created_count','order_time_24m_weekday_units_created_count',
+       'order_time_24m_month_mid_units_created_count','order_time_24m_night_units_placed_count',
+       'order_time_24m_weekday_units_placed_count','order_time_24m_month_mid_units_placed_count',
+        'order_level_window_12m_small_sale_total_gmv_order_level_window_12m_total_gmv_ratio',
+        'order_window_12m_small_sale_placed_item_count_order_window_12m_total_placed_item_count_ratio',
+        'order_level_window_24m_small_sale_total_gmv_order_level_window_24m_total_gmv_ratio',
+        'order_level_window_24m_all_sale_total_gmv_order_level_window_24m_total_gmv_ratio
