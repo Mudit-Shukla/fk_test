@@ -1,34 +1,125 @@
-df['base_score2']=(1-df3['WOE1'])*100*0.05 + (1-df3['WOE2'])*100*0.05 + df['payment_modes_lt_cod_count_ratio']*10 + df3['riskypincode']*0.25+demo['riskypayment']*0.4+df3['riskydevice']*0.10 + df['log_bnpl']*5
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import MiniBatchKMeans
+from sklearn.metrics import silhouette_score
+from sklearn.decomposition import PCA
+
+# Number of samples and features
+n_samples = 1000
+n_features = 20  # Including 'bnpl_avg_dpd'
+
+# Generate synthetic data
+data = pd.DataFrame()
+
+# Generate 19 random features
+for i in range(1, 20):
+    data[f'feature_{i}'] = np.random.randint(1, 1000, size=n_samples)
+
+# Generate 'bnpl_avg_dpd' with some relationship to other features
+# For simplicity, let's assume it's somewhat related to feature_1 and feature_2
+data['bnpl_avg_dpd'] = (
+    (data['feature_1'] * 0.3) +
+    (data['feature_2'] * 0.2) +
+    np.random.normal(0, 50, size=n_samples)  # Add some noise
+).astype(int)
+
+# Introduce some missing values randomly
+for col in data.columns:
+    data.loc[data.sample(frac=0.05).index, col] = np.nan  # 5% missing values per column
+
+# Display first few rows
+data.head()
 
 
-df['log_bnpl']=np.where(
-    df['bnpl_total_amount_overdue_12m'] == 0,
-    1,
-    np.log(df['bnpl_total_amount_overdue_lt'])
-45- 73551 ,63030
-41-83123 ,67898
-50 -46487,46610
+# Check for missing values
+print("Missing values per column:")
+print(data.isnull().sum())
+
+# Impute missing values with mean
+data_imputed = data.fillna(data.mean())
+
+# Verify no missing values remain
+print("\nAfter imputation:")
+print(data_imputed.isnull().sum())
+
+# Separate features and target
+features = data_imputed.drop(['bnpl_avg_dpd'], axis=1)
+target = data_imputed['bnpl_avg_dpd']
+
+# Initialize the scaler
+scaler = StandardScaler()
+
+# Fit and transform the features
+scaled_features = scaler.fit_transform(features)
+
+# Convert back to DataFrame for convenience
+scaled_features_df = pd.DataFrame(scaled_features, columns=features.columns)
+
+# Range of clusters to try
+range_n_clusters = range(2, 15)
+
+# List to store silhouette scores
+silhouette_avg_scores = []
+
+for k in range_n_clusters:
+    kmeans = MiniBatchKMeans(n_clusters=k, random_state=42, batch_size=100)
+    cluster_labels = kmeans.fit_predict(scaled_features_df)
+    silhouette_avg = silhouette_score(scaled_features_df, cluster_labels)
+    silhouette_avg_scores.append(silhouette_avg)
+    print(f"For n_clusters = {k}, the average silhouette_score is : {silhouette_avg:.4f}")
+
+# Plot the silhouette scores
+plt.figure(figsize=(10, 6))
+plt.plot(range_n_clusters, silhouette_avg_scores, 'bx-')
+plt.xlabel('Number of clusters (K)')
+plt.ylabel('Silhouette Score')
+plt.title('Silhouette Analysis For Optimal K')
+plt.show()
 
 
-df[df['base_score2']>45].shape[0]
-df[(df['base_score2']>45)&(df['bnpl_total_amount_overdue_12m']>500)].shape[0]
+# Optimal number of clusters
+optimal_k = 6
 
+# Initialize the Mini-Batch K-Means model
+kmeans = MiniBatchKMeans(n_clusters=optimal_k, random_state=42, batch_size=100)
 
+# Fit the model and predict cluster labels
+cluster_labels = kmeans.fit_predict(scaled_features_df)
 
+# Assign cluster labels to the original data
+data_imputed['cluster'] = cluster_labels
 
+# Initialize PCA
+pca = PCA(n_components=2, random_state=42)
 
+# Fit and transform the scaled features
+pca_components = pca.fit_transform(scaled_features_df)
 
-unique_base_scores = sorted(df['base_score2'].unique())
+# Create a DataFrame with PCA components
+pca_df = pd.DataFrame(data=pca_components, columns=['PC1', 'PC2'])
 
-# Lambda function to calculate the metric
-calculate_fn = lambda X: (
-    X,
-    df[df['base_score2'] > X].shape[0] - df[(df['base_score2'] > X) & (df['bnpl_total_amount_overdue_12m'] > 500)].shape[0]
+# Add cluster labels
+pca_df['cluster'] = cluster_labels
+
+# Add 'bnpl_avg_dpd' for color coding
+pca_df['bnpl_avg_dpd'] = target
+
+plt.figure(figsize=(12, 8))
+sns.scatterplot(
+    x='PC1',
+    y='PC2',
+    hue='cluster',
+    size='bnpl_avg_dpd',
+    palette='viridis',
+    data=pca_df,
+    alpha=0.6
 )
-
-# Use a list comprehension to calculate the result for each unique base_score
-results = [calculate_fn(X) for X in unique_base_scores]
-
-# Display the results
-for result in results:
-    print(f"Threshold: {result[0]}, Value: {result[1]}")
+plt.title('Customer Clusters Visualization (PCA Reduced)')
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.legend(title='Cluster')
+plt.show()
