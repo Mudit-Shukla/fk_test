@@ -13,3 +13,66 @@ selected_features = ['account_id','order_window_lt__order_value','bnpl_avg_dpd_1
                     'order_level_window_24m_small_sale_total_gmv_order_level_window_24m_total_gmv_ratio',
                     'order_level_window_24m_all_sale_total_gmv_order_level_window_24m_total_gmv_ratio']
 df3 = df[selected_features]
+
+
+
+------
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+
+# Custom function to get customer data and scale it
+def get_customer_data(df, account_id, selected_features):
+    """
+    Function to get scaled data for a customer by account_id.
+    
+    Parameters:
+    df (pd.DataFrame): The original dataframe with all features.
+    account_id (int/str): The account_id of the customer to look up.
+    selected_features (list): List of features to select, including 'account_id'.
+    
+    Returns:
+    pd.DataFrame: A DataFrame containing the scaled data for the customer.
+    """
+    
+    # Filter the dataframe to include only the selected features
+    df_filtered = df[selected_features]
+    
+    # Check if account_id exists in the dataset
+    if account_id not in df_filtered['account_id'].values:
+        raise ValueError(f"Account ID {account_id} not found in the dataset.")
+    
+    # Select the row corresponding to the given account_id
+    customer_data = df_filtered[df_filtered['account_id'] == account_id]
+    
+    # Drop 'account_id' column since it should not be scaled
+    customer_data_no_id = customer_data.drop(columns=['account_id'])
+    
+    # Scale the data using StandardScaler
+    scaler = StandardScaler()
+    scaled_data = scaler.fit_transform(customer_data_no_id)
+    
+    # Convert the scaled data back to a DataFrame and keep the original column names
+    scaled_customer_data = pd.DataFrame(scaled_data, columns=customer_data_no_id.columns)
+    
+    # Add back the account_id to the scaled data
+    scaled_customer_data['account_id'] = account_id
+    
+    return scaled_customer_data
+
+# Example usage
+selected_features = ['account_id', 'order_window_lt__order_value', 'bnpl_avg_dpd_12m',
+                    'order_window_12m__order_count', 'order_window_24m__order_count',
+                    'order_window_24m__rto_value', 'order_window_24m__rto_count',
+                    'order_window_24m__order_value', 'order_window_12m__order_value',
+                    'order_window_12m__rto_count', 'order_window_12m__rto_value', 'payment_modes_lt_cod_count_ratio',
+                    'pincode_12m_distinct_count', 'order_level_window_12m_distinct_device_count', 'payment_failure_12m_risky_txn_count',
+                    'payment_failure_12m_insufficient_fund_txn_count', 'payment_failure_12m_incorrect_detail_txn_count',
+                    'order_time_24m_night_units_created_count', 'order_time_24m_weekday_units_created_count',
+                    'order_time_24m_month_mid_units_created_count', 'order_level_window_12m_small_sale_total_gmv_order_level_window_12m_total_gmv_ratio',
+                    'order_window_12m_small_sale_placed_item_count_order_window_12m_total_placed_item_count_ratio',
+                    'order_level_window_24m_small_sale_total_gmv_order_level_window_24m_total_gmv_ratio',
+                    'order_level_window_24m_all_sale_total_gmv_order_level_window_24m_total_gmv_ratio']
+
+# Call the function for a specific account_id (e.g., 12345)
+customer_scaled_data = get_customer_data(df, account_id=12345, selected_features=selected_features)
+print(customer_scaled_data)
