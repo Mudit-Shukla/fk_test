@@ -76,3 +76,8 @@ selected_features = ['account_id', 'order_window_lt__order_value', 'bnpl_avg_dpd
 # Call the function for a specific account_id (e.g., 12345)
 customer_scaled_data = get_customer_data(df, account_id=12345, selected_features=selected_features)
 print(customer_scaled_data)
+
+# Predict the cluster
+cluster_label = kmeans.predict(scaled_features)[0]
+print(f"The new customer belongs to cluster: {cluster_label}")
+
