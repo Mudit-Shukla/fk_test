@@ -123,3 +123,15 @@ plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
 plt.legend(title='Cluster')
 plt.show()
+
+
+# Compute the mean of 'bnpl_avg_dpd' for each cluster
+cluster_profile = data_imputed.groupby('cluster')['bnpl_avg_dpd'].mean().reset_index()
+print(cluster_profile)
+
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='cluster', y='bnpl_avg_dpd', data=data_imputed)
+plt.title('Distribution of bnpl_avg_dpd Across Clusters')
+plt.xlabel('Cluster')
+plt.ylabel('Average Days Past Due (bnpl_avg_dpd)')
+plt.show()
