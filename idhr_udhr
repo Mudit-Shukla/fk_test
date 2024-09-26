@@ -81,3 +81,24 @@ print(customer_scaled_data)
 cluster_label = kmeans.predict(scaled_features)[0]
 print(f"The new customer belongs to cluster: {cluster_label}")
 
+import pandas as pd
+
+# Define chunk size (e.g., 100,000 rows per chunk)
+chunk_size = 100000
+df2_chunks = []
+
+# Create an iterator for reading the data in chunks
+for chunk in pd.read_csv('large_dataset.csv', chunksize=chunk_size):  # Or use `pd.read_excel()` for Excel files
+    # Calculate the mean of the chunk
+    chunk_mean = chunk.mean()
+
+    # Fill missing values in the chunk
+    chunk_filled = chunk.fillna(chunk_mean)
+
+    # Append the filled chunk to the list
+    df2_chunks.append(chunk_filled)
+
+# Concatenate all chunks back together into a single DataFrame
+df2 = pd.concat(df2_chunks, ignore_index=True)
+
+# Now `df2` is the fully processed DataFrame
