@@ -83,22 +83,43 @@ print(f"The new customer belongs to cluster: {cluster_label}")
 
 import pandas as pd
 
-# Define chunk size (e.g., 100,000 rows per chunk)
-chunk_size = 100000
-df2_chunks = []
+# Set the chunk size to process the DataFrame in parts
+chunk_size = 100000  # Adjust chunk size based on memory capacity
 
-# Create an iterator for reading the data in chunks
-for chunk in pd.read_csv('large_dataset.csv', chunksize=chunk_size):  # Or use `pd.read_excel()` for Excel files
-    # Calculate the mean of the chunk
-    chunk_mean = chunk.mean()
+# Step 1: Calculate the overall mean in chunks
+chunk_means_sum = None
+total_rows = 0
 
-    # Fill missing values in the chunk
-    chunk_filled = chunk.fillna(chunk_mean)
+# Process the DataFrame in chunks to accumulate column-wise sums and row counts
+for i in range(0, len(df), chunk_size):
+    df_chunk = df.iloc[i:i + chunk_size]
+    
+    if chunk_means_sum is None:
+        # Initialize the sum and count with the first chunk
+        chunk_means_sum = df_chunk.sum()
+    else:
+        # Accumulate the sum of columns
+        chunk_means_sum += df_chunk.sum()
+    
+    # Keep track of the total number of rows processed
+    total_rows += len(df_chunk)
 
-    # Append the filled chunk to the list
-    df2_chunks.append(chunk_filled)
+# Compute the column-wise mean for the entire DataFrame
+df_mean = chunk_means_sum / total_rows
 
-# Concatenate all chunks back together into a single DataFrame
-df2 = pd.concat(df2_chunks, ignore_index=True)
+# Step 2: Fill missing values with the computed mean, again in chunks
+df_chunks = []
 
-# Now `df2` is the fully processed DataFrame
+for i in range(0, len(df), chunk_size):
+    df_chunk = df.iloc[i:i + chunk_size]
+    
+    # Fill NaN values in the chunk using the previously calculated means
+    df_chunk_filled = df_chunk.fillna(df_mean)
+    
+    # Append the processed chunk to the list
+    df_chunks.append(df_chunk_filled)
+
+# Step 3: Concatenate all chunks into a single DataFrame
+df2 = pd.concat(df_chunks, ignore_index=True)
+
+# `df2` now contains the DataFrame with NaN values filled using the column-wise mean
