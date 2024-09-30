@@ -443,3 +443,244 @@ select AccountId from account limit 20;
 
 
 
+
+
+
+
+
+
+"INSERT INTO intellewings_backup.account_stats_backup (\n" +
+            "accountid,\n" +
+            "accountAgeInDays,\n" +
+            "distinct_pincode,\n" +
+            "transaction_count,\n" +
+            "total_amount,\n" +
+            "last_trxn_ts,\n" +
+            "distinct_pincode_1m,\n" +
+            "distinct_pincode_last_3m,\n" +
+            "distinct_pincode_six_3m,\n" +
+            "lifetime_distinct_card,\n" +
+            "lifetime_distinct_device,\n" +
+            "lifetime_distinct_ip,\n" +
+            "distinct_card_one_day,\n" +
+            "distinct_device_one_day,\n" +
+            "distinct_ipaddress_one_day,\n" +
+            "weekly_distinct_card,\n" +
+            "weekly_distinct_device,\n" +
+            "weekly_distinct_ipaddress,\n" +
+            "monthly_distinct_card,\n" +
+            "monthly_distinct_device,\n" +
+            "monthly_distinct_ipaddress,\n" +
+            "3ms_distinct_card,\n" +
+            "3ms_distinct_device,\n" +
+            "3ms_distinct_ipaddress,\n" +
+            "6ms_distinct_card,\n" +
+            "6ms_distinct_device,\n" +
+            "6ms_distinct_ipaddress,\n" +
+            "success_trxn_count,\n" +
+            "failed_trxn_count,\n" +
+            "pending_trxn_count,\n" +
+            "initiated_trxn_count,\n" +
+            "success_trxn_count_1m,\n" +
+            "failed_trxn_count_1m,\n" +
+            "pending_trxn_count_1m,\n" +
+            "initiated_trxn_count_1m,\n" +
+            "success_trxn_count_last_3ms,\n" +
+            "failed_trxn_count_last_3ms,\n" +
+            "pending_trxn_count_last_3ms,\n" +
+            "initiated_trxn_count_last_3ms,\n" +
+            "success_trxn_amount,\n" +
+            "failed_trxn_amount,\n" +
+            "pending_trxn_amount,\n" +
+            "initiated_trxn_amount,\n" +
+            "success_trxn_amount_1m,\n" +
+            "failed_trxn_amount_1m,\n" +
+            "pending_trxn_amount_1m,\n" +
+            "initiated_trxn_amount_1m,\n" +
+            "success_trxn_amount_last_3ms,\n" +
+            "failed_trxn_amount_last_3ms,\n" +
+            "pending_trxn_amount_last_3ms,\n" +
+            "initiated_trxn_amount_last_3ms,\n" +
+            "delivered_trxn_count,\n" +
+            "returned_trxn_count,\n" +
+            "rejected_trxn_count,\n" +
+            "cancelled_trxn_count,\n" +
+            "delivered_trxn_count_1m,\n" +
+            "returned_trxn_count_1m,\n" +
+            "rejected_trxn_count_1m,\n" +
+            "cancelled_trxn_count_1m,\n" +
+            "delivered_trxn_count_3m,\n" +
+            "returned_trxn_count_3m,\n" +
+            "rejected_trxn_count_3m,\n" +
+            "cancelled_trxn_count_3m,\n" +
+            "delivered_trxn_amount,\n" +
+            "returned_trxn_amount,\n" +
+            "rejected_trxn_amount,\n" +
+            "cancelled_trxn_amount,\n" +
+            "delivered_trxn_amount_1m,\n" +
+            "returned_trxn_amount_1m,\n" +
+            "rejected_trxn_amount_1m,\n" +
+            "cancelled_trxn_amount_1m,\n" +
+            "delivered_trxn_amount_3m,\n" +
+            "returned_trxn_amount_3m,\n" +
+            "rejected_trxn_amount_3m,\n" +
+            "cancelled_trxn_amount_3m,\n" +
+            "credit_card_trxn_count,\n" +
+            "debit_card_trxn_count,\n" +
+            "upi_trxn_count,\n" +
+            "egv_wallets_trxn_count,\n" +
+            "cod_trxn_count,\n" +
+            "emi_trxn_count,\n" +
+            "flipkart_finance_trxn_count,\n" +
+            "credit_card_trxn_count_last_3ms,\n" +
+            "debit_card_trxn_count_last_3ms,\n" +
+            "upi_trxn_count_last_3ms,\n" +
+            "egv_wallets_trxn_count_last_3ms,\n" +
+            "cod_trxn_count_last_3ms,\n" +
+            "emi_trxn_count_last_3ms,\n" +
+            "flipkart_finance_trxn_count_last_3ms,\n" +
+            "credit_card_trxn_amount,\n" +
+            "debit_card_trxn_amount,\n" +
+            "upi_trxn_amount,\n" +
+            "egv_wallets_trxn_amount,\n" +
+            "cod_trxn_amount,\n" +
+            "emi_trxn_amount,\n" +
+            "flipkart_finance_trxn_amount,\n" +
+            "credit_card_trxn_amount_last_3ms,\n" +
+            "debit_card_trxn_amount_last_3ms,\n" +
+            "upi_trxn_amount_last_3ms,\n" +
+            "egv_wallets_trxn_amount_last_3ms,\n" +
+            "cod_trxn_amount_last_3ms,\n" +
+            "emi_trxn_amount_last_3ms,\n" +
+            "flipkart_finance_trxn_amount_last_3ms,\n" +
+            "international_trxn_count_last_3ms,\n" +
+            "international_trxn_count_last_6ms,\n" +
+            "international_trxn_count_last_month,\n" +
+            "international_trxn_sum_last_3ms,\n" +
+            "international_trxn_sum_last_6ms,\n" +
+            "international_trxn_sum_last_month,\n" +
+            "created_time_stamp\n" +
+            ")\n" +
+            "SELECT \n" +
+            "acc.accountid, \n" +
+            "case when openDate = '0000-00-00 00:00:00' or openDate = '' then -1 else DATEDIFF(NOW(), IFNULL(openDate, NOW())) end AS accountAgeInDays,\n" +
+            "COUNT(DISTINCT ad.Pincode) AS distinct_pincode,\n" +
+            "COUNT(transaction.TransactionId) AS transaction_count,\n" +
+            "SUM(Amount) AS total_amount,\n" +
+            "max(TransactionDate) AS last_trxn_ts,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN ad.pincode END) AS distinct_pincode_1m,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN ad.pincode END) AS distinct_pincode_last_3m,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) AND NOW() THEN ad.pincode END) AS distinct_pincode_six_3m,\n" +
+            "COUNT(DISTINCT card.cardid) AS lifetime_distinct_card,\n" +
+            "COUNT(DISTINCT deviceid) AS lifetime_distinct_device,\n" +
+            "COUNT(DISTINCT ipaddress) AS lifetime_distinct_ip,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW() THEN card.cardid END) AS distinct_card_one_day,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW() THEN deviceid END) AS distinct_device_one_day,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 1 DAY) AND NOW() THEN ipaddress END) AS distinct_ipaddress_one_day,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW() THEN card.cardid END) AS weekly_distinct_card,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW() THEN deviceid END) AS weekly_distinct_device,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW() THEN ipaddress END) AS weekly_distinct_ipaddress,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN card.cardid END) AS monthly_distinct_card,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN deviceid END) AS monthly_distinct_device,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN ipaddress END) AS monthly_distinct_ipaddress,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN card.cardid END) AS 3ms_distinct_card,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN deviceid END) AS 3ms_distinct_device,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN ipaddress END) AS 3ms_distinct_ipaddress,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) AND NOW() THEN card.cardid END) AS 6ms_distinct_card,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) AND NOW() THEN deviceid END) AS 6ms_distinct_device,\n" +
+            "COUNT(DISTINCT CASE WHEN TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) AND NOW() THEN ipaddress END) AS 6ms_distinct_ipaddress,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 0 THEN 1 END) AS success_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 1 THEN 1 END) AS failed_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 2 THEN 1 END) AS pending_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 3 THEN 1 END) AS initiated_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 0 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS success_trxn_count_1m,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 1 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS failed_trxn_count_1m,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 2 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS pending_trxn_count_1m,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS initiated_trxn_count_1m,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 0 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS success_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 1 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS failed_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 2 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS pending_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN TransactionStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS initiated_trxn_count_last_3ms,\n" +
+            "SUM(CASE WHEN TransactionStatus = 0 THEN Amount END) AS success_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionStatus = 1 THEN Amount END) AS failed_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionStatus = 2 THEN Amount END) AS pending_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionStatus = 3 THEN Amount END) AS initiated_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionStatus = 0 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS success_trxn_amount_1m,\n" +
+            "SUM(CASE WHEN TransactionStatus = 1 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS failed_trxn_amount_1m,\n" +
+            "SUM(CASE WHEN TransactionStatus = 2 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS pending_trxn_amount_1m,\n" +
+            "SUM(CASE WHEN TransactionStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS initiated_trxn_amount_1m,\n" +
+            "SUM(CASE WHEN TransactionStatus = 0 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS success_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN TransactionStatus = 1 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS failed_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN TransactionStatus = 2 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS pending_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN TransactionStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS initiated_trxn_amount_last_3ms,\n" +
+            "\n" +
+            "COUNT(CASE WHEN OrderStatus = 4 or OrderStatus = 7 THEN 1 END) AS delivered_trxn_count,\n" +
+            "COUNT(CASE WHEN OrderStatus = 5 or OrderStatus = 6 THEN 1 END) AS returned_trxn_count,\n" +
+            "COUNT(CASE WHEN OrderStatus = 9 THEN 1 END) AS rejected_trxn_count,\n" +
+            "COUNT(CASE WHEN OrderStatus = 3 THEN 1 END) AS cancelled_trxn_count,\n" +
+            "COUNT(CASE WHEN (OrderStatus = 4 or OrderStatus = 7) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS delivered_trxn_count_1m,\n" +
+            "COUNT(CASE WHEN (OrderStatus = 5 or OrderStatus = 6) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS returned_trxn_count_1m,\n" +
+            "COUNT(CASE WHEN OrderStatus = 9 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS rejected_trxn_count_1m,\n" +
+            "COUNT(CASE WHEN OrderStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS cancelled_trxn_count_1m,\n" +
+            "COUNT(CASE WHEN (OrderStatus = 4 or OrderStatus = 7) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS delivered_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN (OrderStatus = 5 or OrderStatus = 6) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS returned_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN OrderStatus = 9 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS rejected_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN OrderStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS cancelled_trxn_count_last_3ms,\n" +
+            "\n" +
+            "SUM(CASE WHEN OrderStatus = 4 or OrderStatus = 7 THEN Amount END) AS delivered_trxn_amount,\n" +
+            "SUM(CASE WHEN OrderStatus = 5 or OrderStatus = 6 THEN Amount END) AS returned_trxn_amount,\n" +
+            "SUM(CASE WHEN OrderStatus = 9 THEN Amount END) AS rejected_trxn_amount,\n" +
+            "SUM(CASE WHEN OrderStatus = 3 THEN Amount END) AS cancelled_trxn_amount,\n" +
+            "SUM(CASE WHEN (OrderStatus = 4 or OrderStatus = 7) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS delivered_trxn_amount_1m,\n" +
+            "SUM(CASE WHEN (OrderStatus = 5 or OrderStatus = 6) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS returned_trxn_amount_1m,\n" +
+            "SUM(CASE WHEN OrderStatus = 9 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS rejected_trxn_amount_1m,\n" +
+            "SUM(CASE WHEN OrderStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS cancelled_trxn_amount_1m,\n" +
+            "SUM(CASE WHEN (OrderStatus = 4 or OrderStatus = 7) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS delivered_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN (OrderStatus = 5 or OrderStatus = 6) AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN AMount END) AS returned_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN OrderStatus = 9 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS rejected_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN OrderStatus = 3 AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS cancelled_trxn_amount_last_3ms,\n" +
+            "\n" +
+            "COUNT(CASE WHEN TransactionModeId = 'CREDIT' THEN 1 END) AS credit_card_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionModeId = 'DEBIT' THEN 1 END) AS debit_card_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionModeId = 'PHONEPE' OR TransactionModeId = 'UPI_INTENT' OR TransactionModeId = 'UPI_COLLECT' OR TransactionModeId = 'FK_UPI' THEN 1 END) AS upi_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionModeId = 'EGV' OR TransactionModeId = 'EGV_WALLET' OR TransactionModeId = 'WALLET' THEN 1 END) AS egv_wallets_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionModeId = 'COD' THEN 1 END) AS cod_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionModeId = 'EMI' THEN 1 END) AS emi_trxn_count,\n" +
+            "COUNT(CASE WHEN TransactionModeId = 'FLIPKART_FINANCE' THEN 1 END) AS flipkart_finance_trxn_count,\n" +
+            "COUNT(CASE WHEN (TransactionModeId = 'CREDIT') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS credit_card_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN (TransactionModeId = 'DEBIT') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS debit_card_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN (TransactionModeId = 'PHONEPE' OR TransactionModeId = 'UPI_INTENT' OR TransactionModeId = 'UPI_COLLECT' OR TransactionModeId = 'FK_UPI') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS upi_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN (TransactionModeId = 'EGV' OR TransactionModeId = 'EGV_WALLET' OR TransactionModeId = 'WALLET') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS egv_wallets_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN (TransactionModeId = 'COD') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS cod_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN (TransactionModeId = 'EMI') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS emi_trxn_count_last_3ms,\n" +
+            "COUNT(CASE WHEN (TransactionModeId = 'FLIPKART_FINANCE') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS flipkart_finance_trxn_count_last_3ms,\n" +
+            "SUM(CASE WHEN TransactionModeId = 'CREDIT' THEN Amount END) AS credit_card_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionModeId = 'DEBIT' THEN Amount END) AS debit_card_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionModeId = 'PHONEPE' OR TransactionModeId = 'UPI_INTENT' OR TransactionModeId = 'UPI_COLLECT' OR TransactionModeId = 'FK_UPI' THEN Amount END) AS upi_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionModeId = 'EGV' OR TransactionModeId = 'EGV_WALLET' OR TransactionModeId = 'WALLET' THEN Amount END) AS egv_wallets_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionModeId = 'COD' THEN Amount END) AS cod_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionModeId = 'EMI' THEN Amount END) AS emi_trxn_amount,\n" +
+            "SUM(CASE WHEN TransactionModeId = 'FLIPKART_FINANCE' THEN Amount END) AS flipkart_finance_trxn_amount,\n" +
+            "SUM(CASE WHEN (TransactionModeId = 'CREDIT') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS credit_card_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN (TransactionModeId = 'DEBIT') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS debit_card_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN (TransactionModeId = 'PHONEPE' OR TransactionModeId = 'UPI_INTENT' OR TransactionModeId = 'UPI_COLLECT' OR TransactionModeId = 'FK_UPI') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS upi_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN (TransactionModeId = 'EGV' OR TransactionModeId = 'EGV_WALLET' OR TransactionModeId = 'WALLET') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS egv_wallets_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN (TransactionModeId = 'COD') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS cod_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN (TransactionModeId = 'EMI') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS emi_trxn_amount_last_3ms,\n" +
+            "SUM(CASE WHEN (TransactionModeId = 'FLIPKART_FINANCE') AND TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS flipkart_finance_trxn_amount_last_3ms,\n" +
+            "\n" +
+            "SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN 1 END) AS international_trxn_count_last_3ms, \n" +
+            "SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) AND NOW() THEN 1 END) AS international_trxn_count_last_6ms, \n" +
+            "SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN 1 END) AS international_trxn_count_last_month, \n" +
+            "SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 90 DAY) AND NOW() THEN Amount END) AS international_trxn_sum_last_3ms, \n" +
+            "SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 180 DAY) AND NOW() THEN Amount END) AS international_trxn_sum_last_6ms, \n" +
+            "SUM(CASE WHEN (card.IsInternational = 1) and TransactionDate BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW() THEN Amount END) AS international_trxn_sum_last_month, \n" +
+            "\n" +
+            "NOW()\n" +
+            "FROM intellewings_backup.transaction as transaction\n" +
+            "JOIN intellewings_backup.account AS acc ON transaction.AccountId = acc.AccountId\n" +
+            "left JOIN intellewings_backup.card ON transaction.CardId = card.CardId\n" +
+            "left JOIN intellewings.backup.address AS ad ON ad.TransactionId = transaction.TransactionId\n" +
+            "WHERE transaction.ACCOUNTID IN (parameter)\n" +
+            "GROUP BY accountid ;\n";
+
